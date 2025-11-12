@@ -1,3 +1,5 @@
+import random
+
 def print_board(board):
     """Выводит доску в красивом виде, как в настоящей игре."""
     print("\n+----+----+----+----+")
@@ -58,8 +60,13 @@ def movement(move, x_empty, y_empty):
                 print('Туда низя')
                 game_logic(game_board)
 
-empty_cell = ' x '
-game_board = [[' 1 ', ' 2 ', ' 3 ', ' 4 '], [' 5 ', ' 6 ', ' 7 ', ' 8 '], [' 9 ', '10 ', '11 ', '12 '], ['13 ', '14 ', empty_cell, '15 ']]
+empty_cell = '   '
 win_board  = [[' 1 ', ' 2 ', ' 3 ', ' 4 '], [' 5 ', ' 6 ', ' 7 ', ' 8 '], [' 9 ', '10 ', '11 ', '12 '], ['13 ', '14 ', '15 ', empty_cell]]
+
+game_board = [x[:] for x in win_board]
+x, y = 3, 3
+
+#шафл
+
 game_logic(game_board)
 
