@@ -36,28 +36,28 @@ def movement(move, x_empty, y_empty):
                 game_board[x_empty - 1][y_empty], game_board[x_empty][y_empty] = game_board[x_empty][y_empty], game_board[x_empty - 1][y_empty]
                 game_logic(game_board)
             else:
-                print('Туда низя')
+                print('Выход за поле')
                 game_logic(game_board)
         case 'a':
             if y_empty - 1 >= 0:
                 game_board[x_empty][y_empty - 1], game_board[x_empty][y_empty] = game_board[x_empty][y_empty], game_board[x_empty][y_empty - 1]
                 game_logic(game_board)
             else:
-                print('Туда низя')
+                print('Выход за поле')
                 game_logic(game_board)
         case 's':
             if x_empty + 1 <= 3:
                 game_board[x_empty + 1][y_empty], game_board[x_empty][y_empty] = game_board[x_empty][y_empty], game_board[x_empty + 1][y_empty]
                 game_logic(game_board)
             else:
-                print('Туда низя')
+                print('Выход за поле')
                 game_logic(game_board)
         case 'd':
             if y_empty + 1 <= 3:
                 game_board[x_empty][y_empty + 1], game_board[x_empty][y_empty] = game_board[x_empty][y_empty], game_board[x_empty][y_empty + 1]
                 game_logic(game_board)
             else:
-                print('Туда низя')
+                print('Выход за поле')
                 game_logic(game_board)
 
 empty_cell = '   '
@@ -66,7 +66,25 @@ win_board  = [[' 1 ', ' 2 ', ' 3 ', ' 4 '], [' 5 ', ' 6 ', ' 7 ', ' 8 '], [' 9 '
 game_board = [x[:] for x in win_board]
 x, y = 3, 3
 
-#шафл
+for _ in range(50):
+    d = []
+    if x > 0: d.append('w')
+    if x < 3: d.append('s')
+    if y > 0: d.append('a')
+    if y < 3: d.append('d')
+    move = random.choice(d)
+    if move == 'w':
+        game_board[x][y], game_board[x-1][y] = game_board[x-1][y], game_board[x][y]
+        x -= 1
+    elif move == 's':
+        game_board[x][y], game_board[x+1][y] = game_board[x+1][y], game_board[x][y]
+        x += 1
+    elif move == 'a':
+        game_board[x][y], game_board[x][y-1] = game_board[x][y-1], game_board[x][y]
+        y -= 1
+    elif move == 'd':
+        game_board[x][y], game_board[x][y+1] = game_board[x][y+1], game_board[x][y]
+        y += 1
 
 game_logic(game_board)
 
