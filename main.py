@@ -1,9 +1,19 @@
+def print_board(board):
+    """Выводит доску в красивом виде, как в настоящей игре."""
+    print("\n+----+----+----+----+")
+    for i in board:
+        line = "|"
+        for j in i:
+            line += f"{j:>3} |"
+        print(line)
+        print("+----+----+----+----+")
+
 def game_logic(game_board):
     if game_board == win_board:    #Проверка на победный сценарий
         print('Победа')
         return
     else:    #Ищем пустую клетку для передачи её в movement
-        print('\n', game_board[0], '\n', game_board[1], '\n', game_board[2], '\n', game_board[3], '\n')
+        print_board(game_board)
         for x in range(len(game_board)):
             for y in range(len(game_board[x])):
                 if game_board[x][y] == empty_cell:
