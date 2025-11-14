@@ -1,5 +1,6 @@
 import random
 import os 
+import time
 
 def clear_s():
     os.system('cls' if os.name == 'nt' else 'clear')
@@ -14,12 +15,19 @@ def print_board(board):
         print(line)
         print("+----+----+----+----+")
 
+def text(m):
+    clear_s()
+    print_board(game_board)
+    print(f"\n{m}")
+    time.sleep(1)
+
 def game_logic(game_board):
     if game_board == win_board:    #Проверка на победный сценарий
         clear_s()
         print('Победа')
         return
     else:    #Ищем пустую клетку для передачи её в movement
+        clear_s()
         print_board(game_board)
         for x in range(len(game_board)):
             for y in range(len(game_board[x])):
@@ -31,8 +39,7 @@ def game_logic(game_board):
     if move == 'w' or move == 'a' or move == 's' or move == 'd':
         movement(move, x_empty, y_empty)
     else:
-        clear_s()
-        print('Нет такого направления')
+        text('Нет такого направления')
         game_logic(game_board)
 
 def movement(move, x_empty, y_empty):
@@ -42,32 +49,28 @@ def movement(move, x_empty, y_empty):
                 game_board[x_empty - 1][y_empty], game_board[x_empty][y_empty] = game_board[x_empty][y_empty], game_board[x_empty - 1][y_empty]
                 game_logic(game_board)
             else:
-                clear_s()
-                print('Туда низя')
+                text("Туда нельзя!")
                 game_logic(game_board)
         case 'a':
             if y_empty - 1 >= 0:
                 game_board[x_empty][y_empty - 1], game_board[x_empty][y_empty] = game_board[x_empty][y_empty], game_board[x_empty][y_empty - 1]
                 game_logic(game_board)
             else:
-                clear_s()
-                print('Туда низя')
+                text("Туда нельзя!")
                 game_logic(game_board)
         case 's':
             if x_empty + 1 <= 3:
                 game_board[x_empty + 1][y_empty], game_board[x_empty][y_empty] = game_board[x_empty][y_empty], game_board[x_empty + 1][y_empty]
                 game_logic(game_board)
             else:
-                clear_s()
-                print('Туда низя')
+                text("Туда нельзя!")
                 game_logic(game_board)
         case 'd':
             if y_empty + 1 <= 3:
                 game_board[x_empty][y_empty + 1], game_board[x_empty][y_empty] = game_board[x_empty][y_empty], game_board[x_empty][y_empty + 1]
                 game_logic(game_board)
             else:
-                clear_s()
-                print('Туда низя')
+                text("Туда нельзя!")
                 game_logic(game_board)
 
 empty_cell = '   '
@@ -95,5 +98,8 @@ for _ in range(50):
         game_board[x][y], game_board[x][y+1] = game_board[x][y+1], game_board[x][y]
         y += 1
 
+clear_s()
+print('игра началась')
+time.sleep(1)
 clear_s()
 game_logic(game_board)
