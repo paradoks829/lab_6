@@ -99,7 +99,7 @@ for _ in range(50):
         y += 1
 
 clear_s()
-print('игра началась')
+print('Игра началась!')
 time.sleep(1)
 clear_s()
 game_logic(game_board)
