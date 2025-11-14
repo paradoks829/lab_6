@@ -36,7 +36,7 @@ def game_logic(game_board):
                     y_empty = y    #Строка
                     break
     move = input('Куда двигаемся? W A S D: \n').lower()
-    if move == 'w' or move == 'a' or move == 's' or move == 'd':
+    if move in ('w', 'a', 's', 'd'):
         movement(move, x_empty, y_empty)
     else:
         text('Нет такого направления')
@@ -49,32 +49,35 @@ def movement(move, x_empty, y_empty):
                 game_board[x_empty - 1][y_empty], game_board[x_empty][y_empty] = game_board[x_empty][y_empty], game_board[x_empty - 1][y_empty]
                 game_logic(game_board)
             else:
-                text("Туда нельзя!")
+                text("Туда незя!")
                 game_logic(game_board)
         case 'a':
             if y_empty - 1 >= 0:
                 game_board[x_empty][y_empty - 1], game_board[x_empty][y_empty] = game_board[x_empty][y_empty], game_board[x_empty][y_empty - 1]
                 game_logic(game_board)
             else:
-                text("Туда нельзя!")
+                text("Туда незя!")
                 game_logic(game_board)
         case 's':
             if x_empty + 1 <= 3:
                 game_board[x_empty + 1][y_empty], game_board[x_empty][y_empty] = game_board[x_empty][y_empty], game_board[x_empty + 1][y_empty]
                 game_logic(game_board)
             else:
-                text("Туда нельзя!")
+                text("Туда незя!")
                 game_logic(game_board)
         case 'd':
             if y_empty + 1 <= 3:
                 game_board[x_empty][y_empty + 1], game_board[x_empty][y_empty] = game_board[x_empty][y_empty], game_board[x_empty][y_empty + 1]
                 game_logic(game_board)
             else:
-                text("Туда нельзя!")
+                text("Туда незя!")
                 game_logic(game_board)
 
 empty_cell = '   '
-win_board  = [[' 1 ', ' 2 ', ' 3 ', ' 4 '], [' 5 ', ' 6 ', ' 7 ', ' 8 '], [' 9 ', '10 ', '11 ', '12 '], ['13 ', '14 ', '15 ', empty_cell]]
+win_board  = [[' 1 ', ' 2 ', ' 3 ', ' 4 '], 
+              [' 5 ', ' 6 ', ' 7 ', ' 8 '], 
+              [' 9 ', '10 ', '11 ', '12 '], 
+              ['13 ', '14 ', '15 ', empty_cell]]
 
 game_board = [x[:] for x in win_board]
 x, y = 3, 3
